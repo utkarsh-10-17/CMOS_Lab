@@ -1,0 +1,6 @@
+# requirements.txt
+
+WinSpice (https://www.winspice.com/)
+(Optional) NGSpice (https://ngspice.sourceforge.io/) – for Linux/Mac users
+Text editor (e.g., VS Code, Sublime, Notepad++)
+Plot viewer (included with WinSpice)
