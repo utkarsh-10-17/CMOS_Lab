@@ -1,0 +1,21 @@
+* CMOS NAND Gate Simulation
+
+ 
+Vdd 5 0 dc 3v
+.model nmod nmos level = 54 version = 4.7
+m1 2 1 0 0 nmod w = 100u l = 10u
+m2 4 3 2 2 nmod w = 100u l = 10u
+.model pmod pmos level = 54 version = 4.7
+m3 5 3 4 4 pmod w = 100u l = 10u
+m4 5 1 4 4 pmod w = 100u l = 10uB
+
+* Input signals A and B
+V1 1 0 pulse(0 5 0 0 0 100 200)  ; Input A (pulse signal)
+V2 3 0 dc 0v  ; Input B  
+
+.tran 0.1 400
+.control 
+run
+plot v(1) v(3)
+.endc
+.end

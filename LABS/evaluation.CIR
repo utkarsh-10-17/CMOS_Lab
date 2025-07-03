@@ -1,0 +1,72 @@
+CIRCUIT C:\Academics\sem5\Cmos\LABS\evaluation.MSK
+*
+* IC Technology: CMOS 0.18µm - 6 Metal
+*
+VDD 1 0 DC 2.00
+Vclock1 14 0 DC 0 PULSE(0.00 2.00 0.45N 0.05N 0.05N 0.45N 1.00N)
+*
+* List of nodes
+* "N4" corresponds to n°4
+* "s1" corresponds to n°5
+* "N6" corresponds to n°6
+* "N7" corresponds to n°7
+* "N8" corresponds to n°8
+* "clock1" corresponds to n°14
+*
+* MOS devices
+MN1 0 0 8 0 N1  W= 1.00U L= 0.20U
+MN2 8 14 0 0 N1  W= 1.00U L= 0.20U
+MN3 5 0 8 0 N1  W= 1.00U L= 0.20U
+MN4 8 0 5 0 N1  W= 1.00U L= 0.20U
+MN5 5 1 8 0 N1  W= 1.00U L= 0.20U
+MP1 4 0 1 1 P1  W= 1.00U L= 0.20U
+MP2 5 14 4 1 P1  W= 1.00U L= 0.20U
+MP3 6 0 5 1 P1  W= 1.00U L= 0.20U
+MP4 7 0 6 1 P1  W= 1.00U L= 0.20U
+MP5 1 1 7 1 P1  W= 1.00U L= 0.20U
+*
+C2 1 0  3.740fF
+C3 1 0  2.070fF
+C4 4 0  0.571fF
+C5 5 0  3.256fF
+C6 6 0  0.571fF
+C7 7 0  0.571fF
+C8 8 0  2.433fF
+C11 1 0  0.098fF
+C14 14 0  0.098fF
+*
+*
+* n-MOS BSIM4 :
+* low leakage
+.MODEL N1 NMOS LEVEL=14 VTHO=0.55 U0=0.038 TOXE= 4.0E-9 LINT=-0.010U 
++K1 =0.170 K2=0.100 DVT0=2.300
++DVT1=0.540 LPE0=23.000e-9 ETA0=0.080
++NFACTOR=  1.7 U0=0.038 UA=2.800e-15
++WINT=0.020U LPE0=23.000e-9 
++KT1=-0.060 UTE=-1.800 VOFF=0.010
++XJ=0.150U NDEP=170.000e15 PCLM=0.290
++CGSO=100.0p CGDO=100.0p
++CGBO= 60.0p
+*
+* p-MOS BSIM4:
+* low leakage
+.MODEL P1 PMOS LEVEL=14 VTHO=-0.60 U0=0.010 TOXE= 4.0E-9 LINT=-0.040U 
++K1 =0.290 K2=0.100 DVT0=2.300
++DVT1=0.540 LPE0=23.000e-9 ETA0=0.080
++NFACTOR=  2.2 U0=0.010 UA=1.000e-15
++WINT=0.020U LPE0=23.000e-9 
++KT1=-0.060 UTE=-1.800 VOFF=0.010
++XJ=0.150U NDEP=170.000e15 PCLM=0.300
++CGSO=100.0p CGDO=100.0p
++CGBO= 60.0p
+*
+* Transient analysis
+*
+* (Winspice)
+.options temp=27.0
+.control
+tran 0.1N 5.00N
+print  V(5) V(14) > out.txt
+plot  V(5) V(14)
+.endc
+.END
